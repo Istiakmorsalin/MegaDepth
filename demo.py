@@ -8,6 +8,9 @@ from data.data_loader import CreateDataLoader
 from models.models import create_model
 from skimage import io
 from skimage.transform import resize
+from flask import Flask, jsonify, request, Response
+import json
+app = Flask(__name__)
 
 
 img_path = 'demo.jpg'
@@ -17,7 +20,8 @@ model = create_model(opt)
 input_height = 384
 input_width  = 512
 
-
+#GET /books
+@app.route('/books')
 def test_simple(model):
     total_loss =0 
     toal_count = 0
@@ -48,5 +52,7 @@ def test_simple(model):
 
 
 
-test_simple(model)
-print("We are done")
+# test_simple(model)
+# print("We are done")
+
+app.run(port=5000)
